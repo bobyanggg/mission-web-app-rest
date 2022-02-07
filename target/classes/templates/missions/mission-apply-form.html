@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet"
+		 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Mission Apply Form</title>
+</head>
+<body>
+    <div class="container card card-color">
+        <form action="/missionsPage/updateApply" id="userForm" th:object="${newWorker}">
+            <h2>Mission Apply Form</h2>
+            
+            <div th:object="${mission}" class="form-row">
+                <input type="hidden" class="input-text input-text-block w-100" id="missionId" name="id" th:field="*{id}">
+            </div>
+            
+            <div th:object="${mission}" class="form-row">
+                <label for="Task">Task</label>
+                <input type="text" class="input-text input-text-block w-100" id="content" name="content" th:field="*{content}" readonly="readonly">
+            </div>
+                
+            
+            <div class="form-row">
+                <label for="FirstName">First Name</label>
+                <input type="text" class="input-text input-text-block w-100" id="firstName" name="firstName" th:field="*{firstName}" readonly="readonly">
+            </div>
+            <div class="form-row">
+                <label for="LastName">Last Name</label>
+                <input type="text" class="input-text input-text-block w-100" id="lastName" name="lastName" th:field="*{lastName}" readonly="readonly">
+            </div>
+            <div class="form-row">
+                <label for="Email">Email</label>
+                <input type="email" class="input-text input-text-block w-100" id="email" name="email" th:field="*{email}">
+            </div>
+            <div class="form-row mx-auto">
+                <button type="submit" class="btn-submit" id="btnSubmit">
+                Submit
+                </button>
+            </div>
+        </form>
+        
+        <hr>
+      		<a th:href="@{/}">Back to home</a>
+      </div>
+      
+
+      <p id="log"></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script type="text/javascript"></script>
+
+
+</body>
+</html>

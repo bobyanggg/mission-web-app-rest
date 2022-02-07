@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>My Tasks</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>My Tasks</h3>
+	<hr>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark"></thead>
+	    <tr  class="bg-info">
+			<th>Id</th>
+			<th>Category</th>
+			<th>Content</th>
+			<th>City</th>
+			<th>District</th>
+			<th>Address</th>
+			<th>Salary</th>
+			<th>Poster Email</th>
+			<th>Poster</th>
+			<th>Acceptor</th>
+			<th>Action</th>
+	    </tr>
+	
+	    <tbody id="missionList">
+	        
+	    </tbody>
+		
+		
+
+	</table>	
+	<div th:class=${userId} id="userId"></div>
+	<hr>
+    	<a th:href="@{/}">Back to home</a>
+	
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	      <!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+	   <!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+	   <!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+	<script type="text/javascript"></script>
+	<script>
+	
+		var userId=document.querySelector("#userId").className
+
+		$.ajax({
+
+			type: "GET", 
+			url:  "/missions/list/mymissions/"+userId,
+			dataType: "json",
+			success: function(result) {
+				
+					var table = document.getElementById('missionList')
+			
+					for (var i = 0; i < result.length; i++){
+						if (result[i].worker)
+							var workerName =  result[i].worker.userName
+							else
+								workerName = null
+						var row = `<tr>				
+										<td>${result[i].id}</td>
+										<td>${result[i].category}</td>
+										<td>${result[i].content}</td>
+										<td>${result[i].locationCity}</td>
+										<td>${result[i].locationDistrict}</td>
+										<td>${result[i].locationAddress}</td>
+										<td>${result[i].salary}</td>
+										<td>${result[i].user.email}</td>
+										<td>${result[i].user.userName}</td>
+										<td>${workerName}</td>
+										<td>
+											<form action="/missionsPage/showForDelete" method="GET">	
+												<input type="hidden" name="missionId" value=${result[i].id}>		
+												<button type="submit">Delete</button>
+											</form
+										</td>
+								  </tr>`
+						table.innerHTML += row
+					}
+				
+			}
+
+			,error: function() {
+				alert("fail");
+			}
+			
+		});
+		
+	</script>
+	
+</body>
+</html>
+
+
+
