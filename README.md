@@ -9,11 +9,11 @@ This application is built as a platform on which people can do some small favor 
 3. Run /src/main/java/com/bobyanggg/missionwebapp/MissionWebApp.java
 4. Go to http://localhost:8080
 5. You'll see a sign in page.<br/>
-<img src="src/main/resources/static/image/sign_in.png" width="300"></br>
+<img src="src/main/resources/static/image/sign_in.png" width="450"></br>
 6. You can register as a new user, you can also use the default account inserted in the sql-script is:<br/>
 Account: bob<br/>
 Password: fun123<br/>
-<img src="src/main/resources/static/image/register.png" width="300"></br>
+<img src="src/main/resources/static/image/register.png" width="450"></br>
 
 # How it works
 
